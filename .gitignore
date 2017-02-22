@@ -67,3 +67,6 @@ packages/
 *.testsettings
 
 *.cache
+
+#scriptcs
+scriptcs_packages
