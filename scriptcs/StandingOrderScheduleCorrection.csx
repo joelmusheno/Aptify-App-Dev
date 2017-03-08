@@ -1,25 +1,15 @@
+#load "InputUtilities.csx"
+
 using Aptify.Framework.Application;
 using Aptify.Framework.DataServices;
 using Aptify.Framework.ExceptionManagement;
 using Aptify.Framework.BusinessLogic;
 using Aptify.Framework.BusinessLogic.GenericEntity;
 using System.Data;
-
-public static class InputUtilities {
-    public static int GetUserInputInteger(string prompt) {
-        int result = -1;
-        Console.WriteLine(prompt);
-        var input = Console.ReadLine();
-        if (!int.TryParse(input, out result))
-            throw new ArgumentException(input);
-        return result;
-    }
-}
-
 string lastBillingDate = "3/20/17";
 
 var aptifyPass = Environment.GetEnvironmentVariable("AptifyPassword");
-var uc = new UserCredentials("aptifydb.ohiobar.org", "Aptify", "Aptify", false, -1, "sa", aptifyPass, null, false, -1, true);
+var uc = new UserCredentials("stgaptifydb.ohiobar.org", "Aptify", "Aptify", false, -1, "sa", aptifyPass, null, false, -1, true);
 var da = new DataAction(uc);
 var app = new AptifyApplication(uc);
 var standingOrderId = InputUtilities.GetUserInputInteger("Please Enter Standing Order Id.");
