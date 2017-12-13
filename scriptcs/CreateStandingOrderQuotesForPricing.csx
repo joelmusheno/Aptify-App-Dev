@@ -8,8 +8,7 @@ using Aptify.Framework.BusinessLogic.GenericEntity;
 using System.Data;
 
 const string quoteEffectiveDate = "1/2/2018";
-const string quotePoNumber = "RENEWALPRICECHANGE"
-
+const string quotePoNumber = "RENEWALPRICECHANGE";
 var aptifyPass = Environment.GetEnvironmentVariable("AptifyPassword");
 var aptifyServerName = Environment.GetEnvironmentVariable("AptifyServer");
 var uc = new UserCredentials(aptifyServerName, "Aptify", "Aptify", false, -1, "sa", aptifyPass, null, false, -1, true);
@@ -53,7 +52,7 @@ foreach (var standingOrderRow in standingOrderTable.Rows) {
         quoteLineGe.SetValue("ProductId", productId);
         quoteLineGe.SetValue("Quantity", 1);
 
-        Console.WriteLine(string.format("Adding Product {0}", productId));
+        Console.WriteLine(string.Format("Adding Product {0}", productId));
     }
 
     var errorString = string.Empty;
