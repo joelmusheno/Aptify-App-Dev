@@ -68,8 +68,8 @@ orderProper.SetAddValue("CCSecurityNumber", "123");
 var paymentInformationField = orderProper.Fields["PaymentInformationID"];
 var paymentInformationGe = paymentInformationField.EmbeddedObject;
 
-var authCode = "010101";
-var referenceTransactionNumber = "A10FAA21289B";
+var authCode = "010102";
+var referenceTransactionNumber = "A10FAA21289B-z";
 var referenceExpiration = new DateTime().AddYears(1);
 
 paymentInformationGe.SetValue("CCAuthCode", authCode);
@@ -78,9 +78,6 @@ paymentInformationGe.SetValue("ReferenceExpiration", referenceExpiration);
 
 
 System.Console.WriteLine("Got Here");
-
-
-
 
 var errorString = string.Empty;
 if (!((AptifyGenericEntityBase)orderProper).Save(false, ref errorString))
@@ -104,11 +101,10 @@ foreach (DataRow dr in paymentTable.Rows) {
     paGe.SetValue("ProcessorRefNumber", "A10FAA21289B-PRN");
     paGe.SetValue("MerchantAccountID", 1);
 
-    if (paymentGe.Save(false, ref errorString)) 
+    if (!paymentGe.Save(false, ref errorString)) 
         throw new Exception(errorString);
+
+    Console.WriteLine($"Updated Payment Record {paymentGe.RecordID}");    
 }
-
-
-
 
 Console.WriteLine($"Created Order {orderProper.ID}");
